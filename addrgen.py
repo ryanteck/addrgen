@@ -53,6 +53,7 @@ class KEY:
     def get_secret(self):
         bn = ssl.EC_KEY_get0_private_key(self.k);
         bytes = (ssl.BN_num_bits(bn) + 7) / 8
+        print(bytes)
         mb = ctypes.create_string_buffer(bytes)
         n = ssl.BN_bn2bin(bn, mb);
         return mb.raw.rjust(32, chr(0))
